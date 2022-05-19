@@ -1,0 +1,51 @@
+seperator = "______________________________________"
+
+
+class Question:
+    def __init__(self, question, o1, o2, o3, o4, answer):
+        pass
+        self.question = question
+        self.o1 = o1
+        self.o2 = o2
+        self.o3 = o3
+        self.o4 = o4
+        self.answer = answer
+
+    def ask(self):
+        print(self.question)
+        print(f"A: {self.o1}")
+        print(f"B: {self.o2}")
+        print(f"C: {self.o3}")
+        print(f"D: {self.o4}")
+        guess = input()
+        print(seperator)
+        return guess == self.answer
+
+
+func = Question("", "", "", "", "", "")
+question1 = Question("How old am i?", 12, 13, 14, 15, "C")
+question2 = Question("How tall am i?", "163cm", "166cm", "168cm", "170cm", "B")
+question3 = Question("What's my name?", "Gert", "Jan", "Paul", "Stefan", "D")
+question4 = Question("How many kilos can i leg press?", 76, 81, 89, 72, "B")
+questions = [question1, question2, question3, question4]
+
+
+def new_game():
+    score = 0
+    print("Welcome to my quiz!")
+    print(seperator)
+
+    for i in range(len(questions)):  #ask questions
+        if questions[i].ask():
+            score += 1
+
+    print(f"{score} out of {len(questions)}")  #results
+    print(f"{round(score / len(questions) * 100)}%")
+    print("Would you like to try again? If so: type y. If not: type n")
+    if input().lower() == "y":
+        new_game()
+    else:
+        print("k bye")
+
+
+new_game()
